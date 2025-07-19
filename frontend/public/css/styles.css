@@ -1,0 +1,16 @@
+/* You can add custom styles here if needed */
+/* Most styling is handled by Tailwind */
+
+/* Animation for notifications */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
