@@ -3,10 +3,16 @@
   "version": "1.0.0",
   "description": "Product expiry date alert system",
   "main": "backend/server.js",
+  "type": "module",
   "scripts": {
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node backend/server.js",
+    "dev": "concurrently \"nodemon backend/server.js\" \"live-server frontend/public --port=5500\"",
+    "build": "npm install && cd frontend && npm install && cd ..",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint backend frontend",
+    "predeploy": "npm run build",
+    "frontend": "live-server frontend/public --port=5500",
+    "backend": "nodemon backend/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -16,9 +22,18 @@
     "mongoose": "^8.16.4",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.10.1",
-    "twilio": "^4.23.0"
+    "twilio": "^4.23.0",
+    "concurrently": "^8.2.2",
+    "live-server": "^1.2.2"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^16.1.0",
+    "eslint-plugin-import": "^2.29.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
